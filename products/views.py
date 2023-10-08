@@ -29,7 +29,7 @@ def all_products(request):
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
 
-        if'category' in request.GET:
+        if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
@@ -53,6 +53,7 @@ def all_products(request):
     }
 
     return render(request, 'products/products.html', context)
+
 
 def product_detail(request, product_id):
     """"A view to show individual products details"""
